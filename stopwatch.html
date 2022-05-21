@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 2;
+            padding: 5;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        ul{
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        ul li{
+            list-style: none;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            animation:glow 1.6 ease-in-out infinite;
+        }
+
+        @keyframes glow
+        {
+            0% , 40%, 100%
+            {
+                transform: scale(0.2);
+            }
+            20%{
+                transform: scale(1);
+            }
+        }
+        ul li:nth-child(1){
+            animation-delay: -1.4s;
+            background: #ffff00;
+            box-shadow: 0 0 50px #ffff00;
+        }
+        ul li:nth-child(2){
+            animation-delay: -1.2s;
+            background: greenyellow;
+            box-shadow: 0 0 50px greenyellow;
+        }ul li:nth-child(3){
+            animation-delay: -1s;
+            background: fuchsia;
+            box-shadow: 0 0 50px fuchsia;
+        }ul li:nth-child(4){
+            animation-delay: -0.8s;
+            background: #4fc3f7;
+            box-shadow: 0 0 50px #4fc3f7;
+        }ul li:nth-child(5){
+            animation-delay: -0.6s;
+            background: #ba68c8;
+            box-shadow: 0 0 50px #ba68c8;
+        }ul li:nth-child(6){
+            animation-delay: -0.4s;
+            background: orange;
+            box-shadow: 0 0 50px orange;
+        }ul li:nth-child(7){
+            animation-delay: -0.2s;
+            background: purple;
+            box-shadow: 0 0 50px purple;
+        }
+
+        .content {
+            width: 1000px;
+            margin: 30px auto;
+            text-align: center;
+            font-size: x-large;
+        }
+
+        p {
+            color: orangered;
+            font-size: 40px;
+        }
+
+        h2 {
+            font-family: 'Times New Roman', Times, serif;
+            color: coral;
+            padding-top: 10%;
+            font-weight: 100;
+            font-size: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li> </li>
+            <li> </li>
+            <li> </li>
+            <li> </li>
+            <li> </li>
+            <li> </li>
+            <li> </li>
+        </ul>
+    </div>
+
+
+    <div class="content">
+        <h2>Stopwatch</h2>
+        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+    <script>
+
+       window.onload = function () {
+            var seconds = 00;
+            var tens = 00;
+            var appendtens = document.getElementById("tens");
+            var appendseconds = document.getElementById("seconds");
+            var start = document.getElementById("start");
+            var stop = document.getElementById("stop");
+            var reset = document.getElementById("reset");
+
+            var interval;
+
+            start.onclick = function () {
+                clearInterval(interval);
+                interval = setInterval(startTimer, 10);
+            };
+
+            stop.onclick = function () {
+                clearInterval(interval);
+            };
+
+            reset.onclick = function () {
+                clearInterval(interval);
+                tens = "00";
+                seconds = "00";
+                appendtens.innerHTML = tens;
+                appendseconds.innerHTML = seconds;
+            };
+
+            function startTimer() {
+                tens++;
+
+                if (tens <= 9) {
+                    appendtens.innerHTML = "0" + tens;
+                }
+
+                if (tens > 9) {
+                    appendtens.innerHTML = tens;
+                }
+
+                if (tens > 99) {
+                    seconds++;
+
+                    appendseconds.innerHTML = "0" + seconds;
+                    tens = 0;
+                    appendtens.innerHTML = "0" + 0;
+                }
+
+                if (seconds > 9) {
+                    appendseconds.innerHTML = seconds;
+                }
+            }
+        };
+
+
+    </script>
+</body>
+
+</html>
